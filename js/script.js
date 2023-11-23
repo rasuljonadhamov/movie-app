@@ -151,7 +151,9 @@ function showMovies(movies) {
     div.setAttribute("href", "../pages/detail.html");
 
     div.innerHTML = `
-        <img src="${IMGPATH + poster_path}" alt="${title}" />
+        <img src="${
+          poster_path ? IMGPATH + poster_path : IMGPATH + backdrop_path
+        }" alt="${title}" />
 
         <div class="movie-info">
           <h3>${title}</h3>
@@ -173,6 +175,8 @@ form.addEventListener("submit", (e) => {
 
   if (searchTerm) {
     main.innerHTML = "";
+    selectedJanr = [];
+    selectedHighlight();
     getMovies(SEARCHAPI + "&query=" + searchTerm);
     search.value = "";
   }
