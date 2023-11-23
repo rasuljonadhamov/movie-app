@@ -6,8 +6,6 @@ const SEARCHAPI =
   "https://api.themoviedb.org/3/search/movie?&api_key=04c35731a5ee918f014970082a0088b1&query=";
 
 const BASE_URL = "https://api.themoviedb.org/3";
-const searchURL = BASE_URL + "/search/movie?" + API_KEY;
-const API_URL = BASE_URL + "/discover/movie?sort_by=popularity.desc&" + API_KEY;
 
 const main = document.getElementById("main");
 const form = document.getElementById("form");
@@ -121,7 +119,8 @@ function filter() {
         }
       }
       console.log(selectedJanr);
-      getMovies(API_URL + "&with_genres=" + encodeURI(selectedJanr.join(",")));
+      getMovies(apiurl + "&with_genres=" + encodeURI(selectedJanr.join(",")));
+      selectedHighlight();
     });
 
     janras.appendChild(janraEl);
@@ -166,6 +165,7 @@ function showMovies(movies) {
   });
 }
 
+// Search functionality
 form.addEventListener("submit", (e) => {
   e.preventDefault();
 
@@ -173,7 +173,24 @@ form.addEventListener("submit", (e) => {
 
   if (searchTerm) {
     main.innerHTML = "";
-    getMovies(searchURL + "&query=" + searchTerm);
+    getMovies(SEARCHAPI + "&query=" + searchTerm);
     search.value = "";
   }
 });
+
+// highlight
+
+function selectedHighlight() {
+  const els = document.querySelectorAll(".janra");
+
+  els.forEach((tag) => {
+    tag.classList.remove("highlight");
+  });
+
+  if (selectedJanr.length != 0) {
+    selectedJanr.forEach((id) => {
+      const highlightedTag = document.getElementById(id);
+      highlightedTag.classList.add("highlight");
+    });
+  }
+}

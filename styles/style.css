@@ -55,6 +55,10 @@ header {
   cursor: pointer;
 }
 
+.highlight {
+  background-color: blue;
+}
+
 header {
   background-color: #373b69;
   display: flex;
