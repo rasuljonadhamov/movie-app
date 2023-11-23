@@ -7,15 +7,24 @@
     <link rel="stylesheet" href="./styles/style.css" />
   </head>
   <body>
-    <header>
-      <form id="form">
-        <input type="text" id="search" placeholder="Search" class="search" />
-      </form>
-    </header>
+    <div class="container">
+      <header>
+        <a href="./index.html">
+          <img src="./imgs/icon.png" alt="" />
+        </a>
+        <form id="form">
+          <input type="text" id="search" placeholder="Search" class="search" />
+        </form>
+      </header>
 
-    <div id="janras"></div>
+      <div id="janras"></div>
 
-    <main id="main"></main>
+      <div class="favorites movies-container">
+        <h1>Favorites</h1>
+      </div>
+
+      <main id="main"></main>
+    </div>
 
     <script type="module" src="./js/script.js"></script>
   </body>

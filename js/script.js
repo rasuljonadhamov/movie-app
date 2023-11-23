@@ -145,10 +145,18 @@ async function getMovies(url) {
 // Show movies
 function showMovies(movies) {
   movies.forEach((movie) => {
-    const { title, backdrop_path, vote_average, poster_path } = movie;
+    const {
+      id,
+      title,
+      backdrop_path,
+      vote_average,
+      poster_path,
+      release_date,
+    } = movie;
 
     const div = document.createElement("a");
-    div.setAttribute("href", "../pages/detail.html");
+    div.setAttribute("href", `./pages/detail.html?id=${id}`);
+    div.setAttribute("data-id", `${id}`);
 
     div.innerHTML = `
         <img src="${
@@ -159,10 +167,13 @@ function showMovies(movies) {
           <h3>${title}</h3>
           <span>${vote_average}</span>
         </div>
+        <div class="single-info">
+        <span>Release Date :</span>
+        <span>${release_date}</span>
+      </div>
     `;
 
     div.classList.add("movie");
-
     main.appendChild(div);
   });
 }
