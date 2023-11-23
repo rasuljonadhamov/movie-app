@@ -36,6 +36,25 @@ header {
   outline: none;
 }
 
+#janras {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 10px auto;
+  width: 70%;
+}
+
+.janra {
+  color: #fff;
+  background-color: orangered;
+  padding: 10px 20px;
+  border-radius: 50px;
+  margin: 5px;
+  display: inline-block;
+  cursor: pointer;
+}
+
 header {
   background-color: #373b69;
   display: flex;
