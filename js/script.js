@@ -17,14 +17,19 @@
 // }
 
 // %7Bkeyword%7D
-
+const API_KEY = "api_key=1cf50e6248dc270629e802686245c2c8";
 const apiurl =
   "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=04c35731a5ee918f014970082a0088b1&page=1";
 const IMGPATH = "https://image.tmdb.org/t/p/w1280";
 const SEARCHAPI =
   "https://api.themoviedb.org/3/search/movie?&api_key=04c35731a5ee918f014970082a0088b1&query=";
 
+const BASE_URL = "https://api.themoviedb.org/3";
+const searchURL = BASE_URL + "/search/movie?" + API_KEY;
+
 const main = document.getElementById("main");
+const form = document.getElementById("form");
+const search = document.getElementById("search");
 
 // initially get fav movies
 getMovies(apiurl);
@@ -36,13 +41,16 @@ async function getMovies(url) {
   console.log(respData);
 
   showMovies(respData.results);
+
+  return respData;
 }
 
 function showMovies(movies) {
   movies.forEach((movie) => {
     const { title, backdrop_path, vote_average, poster_path } = movie;
 
-    const div = document.createElement("div");
+    const div = document.createElement("a");
+    div.setAttribute("href", "../pages/detail.html");
 
     div.innerHTML = `
         <img src="${IMGPATH + poster_path}" alt="${title}" />
@@ -58,3 +66,15 @@ function showMovies(movies) {
     main.appendChild(div);
   });
 }
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const searchTerm = search.value;
+
+  if (searchTerm) {
+    main.innerHTML = "";
+    getMovies(searchURL + "&query=" + searchTerm);
+    search.value = "";
+  }
+});

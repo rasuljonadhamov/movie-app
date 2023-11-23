@@ -17,6 +17,32 @@ header {
   padding: 1rem;
 }
 
+.search {
+  background-color: transparent;
+  border: 2px solid #22254b;
+  border-radius: 50px;
+  color: #fff;
+  font-family: inherit;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+}
+
+.search::placeholder {
+  color: #7378c5;
+}
+
+.search:focus {
+  background-color: #22254b;
+  outline: none;
+}
+
+header {
+  background-color: #373b69;
+  display: flex;
+  justify-content: flex-end;
+  padding: 1rem;
+}
+
 main {
   display: flex;
   flex-wrap: wrap;
@@ -30,6 +56,8 @@ main {
   position: relative;
   margin: 1rem;
   width: 300px;
+  border-radius: 18px;
+  cursor: pointer;
 }
 
 .movie img {
