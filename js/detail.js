@@ -15,6 +15,7 @@ const detailApiUrl = `${BASE_URL}/movie/${movieId}?${API_KEY}`;
 
 const main = document.getElementById("main1");
 const section = document.getElementById("section");
+const main_grid = document.getElementById("favourites");
 
 // Fetch movie details using movieId
 async function getMovieDetails(url) {
@@ -52,6 +53,7 @@ async function getMovieDetails(url) {
             <span>Release Date:</span>
             <span>${respData.release_date}</span>
           </div>
+          
         </div>
 
         <div class="overview">
@@ -60,11 +62,47 @@ async function getMovieDetails(url) {
             ${respData.overview}
           </p>
         </div>
+
+        <div class="single-info favv">
+          <span>Add To favorites</span>
+          <span class="heart-icon">&#9829;</span>
+        </div>
+
       </div>
   `;
+
+  const heart_icon = section.querySelector(".heart-icon");
+  heart_icon.addEventListener("click", () => {
+    if (heart_icon.classList.contains("change-color")) {
+      remove_LS(respData.id);
+      heart_icon.classList.remove("change-color");
+    } else {
+      add_LS(respData.id);
+      heart_icon.classList.add("change-color");
+    }
+    fetch_favouriteMovi();
+  });
 
   // Display movie details on the detail page
   // Example: Update DOM elements with movie details
 }
 
 getMovieDetails(detailApiUrl);
+
+function get_LS() {
+  const movie_ids = JSON.parse(localStorage.getItem("movie-id"));
+  return movie_ids === null ? [] : movie_ids;
+}
+
+function add_LS(id) {
+  const movie_ids = get_LS();
+  localStorage.setItem("movie-id", JSON.stringify([...movie_ids, id]));
+}
+
+function remove_LS(id) {
+  const movie_ids = get_LS();
+  localStorage.setItem(
+    "movie-id",
+    JSON.stringify(movie_ids.filter((e) => e != id))
+  );
+}

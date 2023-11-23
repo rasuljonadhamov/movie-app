@@ -66,10 +66,11 @@ h2 {
   margin-bottom: 10px;
 }
 
-.single-info .heart-icon {
+.heart-icon {
   font-size: 2rem;
   user-select: none;
   cursor: pointer;
+  color: #fff;
 }
 
 .single-info .heart-icon:active {
@@ -82,4 +83,12 @@ h2 {
 
 .overview {
   margin: 10px 0;
+}
+
+p {
+  margin-bottom: 100px;
+}
+
+.change-color {
+  color: red;
 }
