@@ -239,8 +239,7 @@ showUser();
 function showUser() {
   if (userData) {
     const html = `
-    <div class="user-img">${userData.name[0]}</div>
-    
+    <div class="user-img">${userData.name.slice(0, 2)}</div>
   `;
 
     userProfile.innerHTML = html;

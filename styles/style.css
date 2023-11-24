@@ -126,6 +126,7 @@ main {
   cursor: pointer;
   outline: 2px solid rgba(255, 0, 0, 0.6);
   text-align: center;
+  text-decoration: none;
 }
 
 .movie img {
@@ -181,5 +182,12 @@ main {
   cursor: pointer;
   border: none;
   border-radius: 8px;
-  padding: 10px 20px;
+  padding: 5px 10px;
+}
+
+.user-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
 }
