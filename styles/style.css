@@ -81,7 +81,7 @@ header {
 
 .janra {
   color: #fff;
-  background-color: orangered;
+  background-color: rgb(38, 255, 0);
   padding: 10px 20px;
   border-radius: 50px;
   margin: 5px;
@@ -98,7 +98,7 @@ header {
   display: flex;
   justify-content: space-between;
   padding: 1rem;
-  border-radius: 5px;
+  border-radius: 9px;
 }
 
 .container {
@@ -190,4 +190,12 @@ main {
   align-items: center;
   justify-content: center;
   gap: 5px;
+}
+
+form {
+  width: 400px;
+}
+
+input {
+  width: 100%;
 }

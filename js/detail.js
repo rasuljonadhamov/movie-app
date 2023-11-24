@@ -14,6 +14,7 @@ const movieId = urlParams.get("id");
 const detailApiUrl = `${BASE_URL}/movie/${movieId}?${API_KEY}`;
 
 const main = document.getElementById("main1");
+const liked = document.getElementById("liked");
 const section = document.getElementById("section");
 const main_grid = document.getElementById("favourites");
 
@@ -97,15 +98,14 @@ async function getMovieDetails(url) {
     if (heart_icon.classList.contains("change-color")) {
       remove_LS(respData.id);
       heart_icon.classList.remove("change-color");
+      console.log(localStorage.getItem("movie-id"));
     } else {
-      add_LS(respData.id);
+      add_LS(respData);
       heart_icon.classList.add("change-color");
+      console.log(localStorage.getItem("movie-id"));
+      showLocalMovie();
     }
-    fetch_favouriteMovi();
   });
-
-  // Display movie details on the detail page
-  // Example: Update DOM elements with movie details
 }
 
 getMovieDetails(detailApiUrl);
@@ -127,3 +127,48 @@ function remove_LS(id) {
     JSON.stringify(movie_ids.filter((e) => e != id))
   );
 }
+
+let likedMovies = [];
+const showLocalMovie = function () {
+  const likedMovies = localStorage.getItem("movie-id")
+    ? JSON.parse(localStorage.getItem("movie-id"))
+    : [];
+
+  if (likedMovies.length) {
+    likedMovies.forEach((movie) => {
+      const {
+        id,
+        title,
+        backdrop_path,
+        vote_average,
+        poster_path,
+        release_date,
+      } = movie;
+
+      const div = document.createElement("div");
+      div.setAttribute("data-id", `${id}`);
+
+      div.innerHTML = `
+      <img src="${
+        poster_path ? IMGPATH + poster_path : IMGPATH + backdrop_path
+      }" alt="${title}" />
+      
+            <div class="movie-local">
+            <h3>${title}</h3>
+            <span>${vote_average}</span>
+            </div>
+            <div class="movie-local">
+            <span>Release Date :</span>
+            <span>${release_date}</span>
+            </div>
+        `;
+
+      div.classList.add("movie");
+      liked.appendChild(div);
+    });
+  }
+};
+
+// localStorage.clear();
+
+showLocalMovie();

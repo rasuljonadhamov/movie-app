@@ -9,6 +9,64 @@ body {
   background-color: lightblue;
 }
 
+/* hhhhshs */
+
+.movie {
+  border-radius: 3px;
+  box-shadow: 0 0 0.5rem rgba(255, 0, 0, 1);
+  overflow: hidden;
+  margin: 1rem;
+  border-radius: 18px;
+  cursor: pointer;
+  outline: 2px solid rgba(255, 0, 0, 0.6);
+  text-align: center;
+  text-decoration: none;
+  width: 260px;
+  padding: 10px;
+}
+
+.movie img {
+  width: 100%;
+  width: 260px;
+  transition: transform 0.3s ease-in;
+}
+
+.movie:hover img {
+  transform: scale(1.05);
+}
+
+.movie-info {
+  color: #eee;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem 1rem;
+  letter-spacing: 0.5px;
+}
+
+.movie-info h3 {
+  margin: 0;
+}
+
+.movie-info span {
+  background-color: #22254b;
+  border-radius: 3px;
+  font-weight: bold;
+  padding: 0.25rem 0.5rem;
+}
+
+.single-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  margin: 0.2rem 0;
+  color: #333;
+  margin-bottom: 7px;
+  gap: 15px;
+}
+
+/* swjahdw */
 .wrapper {
   display: flex;
   align-items: flex-start;
@@ -129,4 +187,14 @@ p {
   border-radius: 8px;
   padding: 10px 20px;
   cursor: pointer;
+}
+
+.user-img {
+  width: 40px;
+  height: 40px;
+  background-color: #eee;
+  border-radius: 50%;
+  text-align: center;
+  padding-top: 7px;
+  display: inline-block;
 }
