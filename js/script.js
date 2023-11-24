@@ -127,38 +127,55 @@ function filter() {
   });
 }
 
+const loadSpiner = function (parentEl) {
+  const markup = `
+    <div class="loader"></div>
+  `;
+
+  parentEl.innerHTML = "";
+  parentEl.innerHTML = markup;
+};
+
 // initially get fav movies
 getMovies(apiurl);
 
 // Get movies from Api
 async function getMovies(url) {
-  const resp = await fetch(url);
-  const respData = await resp.json();
+  try {
+    loadSpiner(main);
+    const resp = await fetch(url);
+    const respData = await resp.json();
 
-  console.log(respData);
+    console.log(respData);
 
-  showMovies(respData.results);
+    showMovies(respData.results);
 
-  return respData;
+    return respData;
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 // Show movies
 function showMovies(movies) {
-  movies.forEach((movie) => {
-    const {
-      id,
-      title,
-      backdrop_path,
-      vote_average,
-      poster_path,
-      release_date,
-    } = movie;
+  try {
+    // loadSpiner(main);
+    main.innerHTML = "";
+    movies.forEach((movie) => {
+      const {
+        id,
+        title,
+        backdrop_path,
+        vote_average,
+        poster_path,
+        release_date,
+      } = movie;
 
-    const div = document.createElement("a");
-    div.setAttribute("href", `./pages/detail.html?id=${id}`);
-    div.setAttribute("data-id", `${id}`);
+      const div = document.createElement("a");
+      div.setAttribute("href", `./pages/detail.html?id=${id}`);
+      div.setAttribute("data-id", `${id}`);
 
-    div.innerHTML = `
+      div.innerHTML = `
         <img src="${
           poster_path ? IMGPATH + poster_path : IMGPATH + backdrop_path
         }" alt="${title}" />
@@ -173,13 +190,17 @@ function showMovies(movies) {
       </div>
     `;
 
-    div.classList.add("movie");
-    main.appendChild(div);
-  });
+      div.classList.add("movie");
+      main.appendChild(div);
+    });
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 // Search functionality
 form.addEventListener("submit", (e) => {
+  loadSpiner(main);
   e.preventDefault();
 
   const searchTerm = search.value;
