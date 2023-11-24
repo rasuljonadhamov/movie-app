@@ -159,7 +159,7 @@ async function getMovies(url) {
 // Show movies
 function showMovies(movies) {
   try {
-    // loadSpiner(main);
+    loadSpiner(main);
     main.innerHTML = "";
     movies.forEach((movie) => {
       const {

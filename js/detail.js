@@ -7,7 +7,7 @@ const SEARCHAPI =
 
 const BASE_URL = "https://api.themoviedb.org/3";
 
-// JavaScript for detail.html
+// Get selected Movie id for detail.html
 const urlParams = new URLSearchParams(window.location.search);
 const movieId = urlParams.get("id");
 
@@ -17,8 +17,20 @@ const main = document.getElementById("main1");
 const section = document.getElementById("section");
 const main_grid = document.getElementById("favourites");
 
+const loadSpiner = function (parentEl) {
+  const markup = `
+    <div class="loader"></div>
+  `;
+
+  parentEl.innerHTML = "";
+  parentEl.innerHTML = markup;
+};
+
+loadSpiner(main);
+
 // Fetch movie details using movieId
 async function getMovieDetails(url) {
+  loadSpiner(section);
   const resp = await fetch(url);
   const respData = await resp.json();
   console.log(respData);
@@ -31,26 +43,35 @@ async function getMovieDetails(url) {
 
   section.innerHTML = `
     <div class="right">
-        <h1>${respData.title}</h1>
+        <h1 class='main-title'>${respData.title}</h1>
         <h3>${respData.tagline}</h3>
         <div class="single-info-container">
           <div class="single-info">
-            <span>Language:</span>
+            <span class='main-info'>Language:</span>
             <span>${respData.original_language}</span>
           </div>
 
           <div class="single-info">
-            <span>Length:</span>
-            <span>${respData.runtime} min</span>
+            <span class='main-info'>Length:</span>
+            <span class='main-info'>${respData.runtime} min</span>
           </div>
 
           <div class="single-info">
-            <span>Rate:</span>
+            <span class='main-info'>Rate:</span>
             <span>${respData.vote_average}</span>
           </div>
 
           <div class="single-info">
-            <span>Release Date:</span>
+            <span class='main-info'>Genres:</span>
+            <span>${respData.genres
+              .map((el) => {
+                return el.name;
+              })
+              .join(", ")}</span>
+          </div>
+
+          <div class="single-info">
+            <span class='main-info'>Release Date:</span>
             <span>${respData.release_date}</span>
           </div>
           
