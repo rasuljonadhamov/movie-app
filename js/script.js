@@ -11,6 +11,7 @@ const main = document.getElementById("main");
 const form = document.getElementById("form");
 const search = document.getElementById("search");
 const janras = document.getElementById("janras");
+const userProfile = document.getElementById("user-profile");
 
 const allJanras = [
   {
@@ -228,5 +229,28 @@ function selectedHighlight() {
       const highlightedTag = document.getElementById(id);
       highlightedTag.classList.add("highlight");
     });
+  }
+}
+
+const userData = JSON.parse(localStorage.getItem("user"));
+
+showUser();
+
+function showUser() {
+  if (userData) {
+    const html = `
+    <div class="user-img">${userData.name[0]}</div>
+    
+  `;
+
+    userProfile.innerHTML = html;
+
+    const loginBtn = document.querySelector(".login-btn");
+    loginBtn &&
+      loginBtn.addEventListener("click", (e) => {
+        window.location.replace("../pages/sigin-in.html");
+      });
+  } else {
+    window.location.replace("../pages/sigin-in.html");
   }
 }
