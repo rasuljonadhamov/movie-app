@@ -198,3 +198,10 @@ p {
   padding-top: 7px;
   display: inline-block;
 }
+
+#favourites {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 5px;
+}

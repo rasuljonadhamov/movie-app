@@ -199,3 +199,10 @@ form {
 input {
   width: 100%;
 }
+
+#favourites {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 5px;
+}

@@ -250,6 +250,9 @@ function showUser() {
         window.location.replace("../pages/sigin-in.html");
       });
   } else {
+    alert("Siz ro'yhatdan o'tmagansiz, Avval ro'yhatdan o'ting");
     window.location.replace("../pages/sigin-in.html");
   }
 }
+
+// localStorage.clear();

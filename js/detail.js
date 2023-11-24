@@ -128,7 +128,6 @@ function remove_LS(id) {
   );
 }
 
-let likedMovies = [];
 const showLocalMovie = function () {
   const likedMovies = localStorage.getItem("movie-id")
     ? JSON.parse(localStorage.getItem("movie-id"))
