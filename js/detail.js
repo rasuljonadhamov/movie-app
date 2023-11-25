@@ -128,10 +128,20 @@ function remove_LS(id) {
   );
 }
 
+// Function to remove a movie from favorites
+function removeMovieFromFavorites(id) {
+  const movie_ids = get_LS();
+  const updatedMovies = movie_ids.filter((movie) => movie.id !== id);
+  localStorage.setItem("movie-id", JSON.stringify(updatedMovies));
+}
+
 const showLocalMovie = function () {
   const likedMovies = localStorage.getItem("movie-id")
     ? JSON.parse(localStorage.getItem("movie-id"))
     : [];
+
+  const favouritesContainer = document.getElementById("favourites");
+  favouritesContainer.innerHTML = ""; // Clear previous content
 
   if (likedMovies.length) {
     likedMovies.forEach((movie) => {
@@ -148,26 +158,36 @@ const showLocalMovie = function () {
       div.setAttribute("data-id", `${id}`);
 
       div.innerHTML = `
-      <img src="${
-        poster_path ? IMGPATH + poster_path : IMGPATH + backdrop_path
-      }" alt="${title}" />
-      
-            <div class="movie-local">
-            <h3>${title}</h3>
-            <span>${vote_average}</span>
-            </div>
-            <div class="movie-local">
-            <span>Release Date :</span>
-            <span>${release_date}</span>
-            </div>
-        `;
+        <img src="${
+          poster_path ? IMGPATH + poster_path : IMGPATH + backdrop_path
+        }" alt="${title}" />
+        <div class="movie-local">
+          <h3>${title}</h3>
+        </div>
+        <div class="movie-local">
+          <span>Rate :</span>
+          <span>${vote_average}</span>
+        </div>
+        <div class="movie-local">
+          <span>Release Date :</span>
+          <span>${release_date}</span>
+        </div>
+        <button class="dislike-button" data-id="${id}">Dislike</button>
+      `;
 
       div.classList.add("movie");
-      liked.appendChild(div);
+      favouritesContainer.appendChild(div);
+
+      const dislikeButton = div.querySelector(".dislike-button");
+      dislikeButton.addEventListener("click", () => {
+        removeMovieFromFavorites(id);
+        div.remove();
+        const heart_icon = section.querySelector(".heart-icon");
+
+        heart_icon.classList.remove("change-color");
+      });
     });
   }
 };
-
-// localStorage.clear();
 
 showLocalMovie();

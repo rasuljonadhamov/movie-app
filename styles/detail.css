@@ -9,6 +9,22 @@ body {
   background-color: lightblue;
 }
 
+h1 {
+  margin-bottom: 20px;
+  margin-top: 0;
+}
+
+h3 {
+  margin-bottom: 15px;
+  font-weight: bold;
+  margin: 25px 0;
+  color: #fff;
+}
+
+h2 {
+  margin-bottom: 10px;
+}
+
 /* hhhhshs */
 
 .movie {
@@ -27,7 +43,6 @@ body {
 
 .movie img {
   width: 100%;
-  width: 260px;
   transition: transform 0.3s ease-in;
 }
 
@@ -112,21 +127,6 @@ header {
   justify-content: space-evenly;
 }
 
-h1 {
-  margin-bottom: 20px;
-  margin-top: 0;
-}
-
-h3 {
-  margin-bottom: 15px;
-  font-weight: bold;
-  margin: 25px 0;
-}
-
-h2 {
-  margin-bottom: 10px;
-}
-
 .heart-icon {
   font-size: 2rem;
   user-select: none;
@@ -203,5 +203,24 @@ p {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
   gap: 5px;
+}
+
+#favourites .movie {
+  width: 310px;
+}
+
+.dislike-button {
+  border: none;
+  padding: 10px 20px;
+  margin-top: 20px;
+  background-color: red;
+  color: #fff;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.movie-local span {
+  color: #fff;
 }
